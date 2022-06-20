@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 dPassport(passport);
 
-app.use("/user", route);
+app.use("/", route);
 
 app.use("", () => {
   throw createHttpError(404, "Route Not Found");
