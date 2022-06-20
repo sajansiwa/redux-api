@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import { port, DB } from "./config/config";
 import route from "./route/route";
 import { errorHandler } from "./middleware/errorHandler";
@@ -10,6 +11,7 @@ import createHttpError from "http-errors";
 const app: Express = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 app.use(passport.initialize());
 dPassport(passport);
