@@ -6,6 +6,32 @@ import jwt from "jsonwebtoken";
 import nodeMailer from "nodemailer";
 import { emailAdd, JWT_KEY, pass } from "../config/config";
 
+export const getUsers: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    return next(createHttpError.InternalServerError);
+  }
+};
+
+export const getUserById: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (err) {
+    return next(createHttpError.InternalServerError);
+  }
+};
+
 export const signupUser: RequestHandler = async (
   req: Request,
   res: Response,

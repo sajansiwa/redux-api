@@ -1,6 +1,8 @@
 import express from "express";
 import {
   contactUs,
+  getUserById,
+  getUsers,
   signinUser,
   signupUser,
 } from "../controller/userController";
@@ -12,6 +14,8 @@ import {
 
 const route = express.Router();
 
+route.get("users", getUsers);
+route.get("users/:id", getUserById);
 route.post("/signup", signupUserValidation, signupUser);
 route.post("/signin", signinUserValidation, signinUser);
 route.post("/contact", contactUs);
